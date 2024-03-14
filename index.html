@@ -19,12 +19,27 @@
     <link rel="icon" href="assets/logo.png" type="image/icon png">
     <title>Prachet Patel</title>
     <style>
+        div{
+            color: #666;
+        }
+        h1{
+            color: black;
+        }
+        h3{
+            color: black;
+        }
+        h4{
+            color: black;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
         .customnavbar {
             position: fixed;
             width: 100%;
             background-color: white;
             min-height: 10vh;
-            z-index: 1000;
+            z-index: 1002;
             box-shadow: 0 10px 100px rgba(0,0,0,0.1);
         }
 
@@ -33,7 +48,6 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            /* filter: opacity(0.9); */
         }
 
         a {
@@ -43,7 +57,9 @@
         .leftnavbar{
             position: absolute;
             left:0;
-            min-height: 40vh;
+            top:34vh;
+            height: 45vh;
+            z-index: 1001;
             width: 60px;
             background-color: white;
             box-shadow: rgba(100,100,111,0.2) 0px 7px 29px 0px;
@@ -62,6 +78,10 @@
         a:hover{
             color: #FFD395;
         }
+        h1{
+            letter-spacing: 3px;
+        }
+        
     </style>
 </head>
 
@@ -82,24 +102,69 @@
             <i class="fa-solid fa-times" id="times" onclick="closeNav()" style="display: none;"></i>
         </div>
     </header>
-    <div class="smallnav flex-column align-items-end " id="smallnav">
-        <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" style="border-bottom: 1px solid rgba(0, 0, 0, 0.1);border-top: 1px solid rgba(0, 0, 0, 0.1)"><a href="#home" style="font-size: 0.9rem;font-weight: 700;">HOME</a></div>
-        <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" style="border-bottom: 1px solid rgba(0, 0, 0, 0.1)"><a href="#about" style="font-size: 0.9rem;font-weight: 700;">ABOUT</a></div>
-        <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" style="border-bottom: 1px solid rgba(0, 0, 0, 0.1)"><a href="#projects" style="font-size: 0.9rem;font-weight: 700;">PROJECTS</a></div>
-        <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" ><a href="#contact" style="font-size: 0.9rem;font-weight: 700;">CONTACT</a></div>
+    <div class="smallnav flex-column align-items-end " id="smallnav" >
+        <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" onclick="closeNav()" style="border-bottom: 1px solid rgba(0, 0, 0, 0.1);border-top: 1px solid rgba(0, 0, 0, 0.1)"><a href="#home" style="font-size: 0.9rem;font-weight: 700;">HOME</a></div>
+        <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" onclick="closeNav()" style="border-bottom: 1px solid rgba(0, 0, 0, 0.1)"><a href="#about" style="font-size: 0.9rem;font-weight: 700;">ABOUT</a></div>
+        <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" onclick="closeNav()" style="border-bottom: 1px solid rgba(0, 0, 0, 0.1)"><a href="#projects" style="font-size: 0.9rem;font-weight: 700;">PROJECTS</a></div>
+        <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" onclick="closeNav()" ><a href="#contact" style="font-size: 0.9rem;font-weight: 700;">CONTACT</a></div>
     </div>
-    <section class="section1 text-center d-flex align-items-center justify-content-center" style="height: 100vh;">
-        <div class="leftnavbar d-lg-flex flex-column d-md-flex d-none gap-4">
-            <a href="" target="_blank"><img src="assets/LinkedIN_black.svg" alt="linkedin" height="40px" width="40px"></a>
-            <a href="" target="_blank"><img src="assets/Instagram_black.svg" alt="linkedin" height="40px" width="40px"></a>
-            <a href="" target="_blank"><img src="assets/Github_black.svg" alt="linkedin" height="40px" width="40px"></a>
-            <a href="" target="_blank"><img src="assets/leetcode_black.png" alt="linkedin" height="40px" width="40px"></a>
-            <a href="" target="_blank"><img src="assets/Gmail_black.svg" alt="linkedin" height="40px" width="40px"></a>
-        </div>
-        <div class="col-lg-6 px-md-5 px-lg-5 px-3">
-            <h1 class="my-5" style="text-transform: uppercase;font-weight: 800;">Hey👋, Welcome to my protfolio </h1>
+    <div class="leftnavbar d-lg-flex flex-column d-md-flex d-none justify-content-around align-items-center">
+        <a href="https://www.linkedin.com/in/prachet-patel-6150a3264" target="_blank"><img src="assets/LinkedIN_black.svg" alt="linkedin" height="35px" width="35px"></a>
+        <a href="https://instagram.com/prachet_patel/" target="_blank"><img src="assets/Instagram_black.svg" alt="linkedin" height="35px" width="35px"></a>
+        <a href="https://github.com/PRACHETPATEL" target="_blank"><img src="assets/Github_black.svg" alt="linkedin" height="35px" width="35px"></a>
+        <a href="https://leetcode.com/prachet35/" target="_blank"><img src="assets/leetcode_black.png" alt="linkedin" height="35px" width="35px"></a>
+        <a href="mailto:prachet.edu@gamil.com?subject=Visited Your Protfolio, Great Website!!" target="_blank"><img src="assets/Gmail_black.svg" alt="linkedin" height="35px" width="35px"></a>
+    </div>
+    <section id="home" class="section1 text-center d-flex align-items-center justify-content-center" style="height: 100vh;">
+        <div class="col-lg-8 px-md-5 px-lg-5 px-3">
+            <h1 class="my-5" style="text-transform: uppercase;font-weight: 700;">Hey👋, Welcome to my protfolio </h1>
             <div class="my-5" style="font-size: 1.25rem;">Unlock the door to innovation and creativity. I'm <span style="text-transform: uppercase;font-weight: 800;">prachet patel</span>, a full-stack developer passionate about crafting seamless digital experiences. Explore my journey through code, creativity, and collaboration.</div>
-            <div class="text-center"><a class="btn btn-lg bg-secondary px-5 py-3" style="font-weight: 900;">PROJECTS</button></a>
+            <div class="text-center"><a href="#projects" class="btn btn-lg bg-secondary px-5 py-3" style="font-weight: 900;">PROJECTS</button></a>
+        </div>
+    </section>
+    <section class="section2  d-flex flex-column align-items-center" id="about" style="min-height: 100vh;">
+        <div class="col-lg-8 px-md-5 px-lg-5 px-3" style="margin-top: 10vh;">
+            <h1 class="my-3 text-center" style="text-transform: uppercase;font-weight: 700;">ABOUT ME</h1>
+            <div class="d-flex justify-content-around"><div style="border: 6px solid #FFD395;width: 50px;border-radius: 10px;"></div></div>
+            <div class="my-3 text-center" style="font-size: 1.25rem;">Here, you'll uncover detailed insights into my professional journey, my areas of expertise, and my current proficiencies primarily centered around programming and technology. Explore further to gain a comprehensive understanding of my skills and capabilities in the realm of software development.</div>
+        </div>
+        <div class="container d-flex flex-lg-row flex-sm-column flex-column  w-100 my-5 px-lg-5 px-md-5 px-3 justify-content-between">
+            <div class="col-lg-5">
+                <h4 style="font-weight: 700;" class="my-5">Discover More About Me!</h4>
+                <div style="text-align: justify;">
+                    I'm a <span style="font-weight: 700;">Full Stack Developer</span> with expertise in frontend and backend technologies. Specializing in frontend development, I create captivating user interfaces using HTML5, JavaScript, CSS, Bootstrap, and Angular.js.
+                    <br><br>
+                    My portfolio showcases seamless integration between frontend elegance and backend functionality. Leveraging Java, JSP, Servlets, Node.js, Express.js, and MongoDB (with Mongoose), I've built dynamic web applications delivering exceptional user experiences.
+                    <br><br>
+                    Beyond coding, I'm passionate about sharing knowledge with the Dev Community. Find me on LinkedIn and Instagram for insights on web development and programming.
+                    <br><br>
+                    Proficient in Git and GitHub for version control, I also have a solid grasp of Data Structures and Algorithms, particularly arrys, divide and conqure algorithms, greedy algorithms and dynamic programming.
+                    <br><br>
+                    Continuously learning, I'm eager to contribute my full-stack expertise to innovative projects. Let's collaborate and create something remarkable together!
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <h4 style="font-weight: 700;" class="my-5">My Skills</h4>
+                <div class="d-flex flex-wrap w-100 gap-3">
+                    <div style="background-color: #E7E7E7;border-radius: 5px;font-weight: 600;" class="py-2 px-3">HTML5</div>
+                    <div style="background-color: #E7E7E7;border-radius: 5px;font-weight: 600;" class="py-2 px-3">CSS</div>
+                    <div style="background-color: #E7E7E7;border-radius: 5px;font-weight: 600;" class="py-2 px-3">Bootstrap</div>
+                    <div style="background-color: #E7E7E7;border-radius: 5px;font-weight: 600;" class="py-2 px-3">JavaScript</div>
+                    <div style="background-color: #E7E7E7;border-radius: 5px;font-weight: 600;" class="py-2 px-3">Java</div>
+                    <div style="background-color: #E7E7E7;border-radius: 5px;font-weight: 600;" class="py-2 px-3">Java Server Pages</div>
+                    <div style="background-color: #E7E7E7;border-radius: 5px;font-weight: 600;" class="py-2 px-3">Servlet</div>
+                    <div style="background-color: #E7E7E7;border-radius: 5px;font-weight: 600;" class="py-2 px-3">Hibernate</div>
+                    <div style="background-color: #E7E7E7;border-radius: 5px;font-weight: 600;" class="py-2 px-3">Python</div>
+                    <div style="background-color: #E7E7E7;border-radius: 5px;font-weight: 600;" class="py-2 px-3">Angular.js</div>
+                    <div style="background-color: #E7E7E7;border-radius: 5px;font-weight: 600;" class="py-2 px-3">Node.js</div>
+                    <div style="background-color: #E7E7E7;border-radius: 5px;font-weight: 600;" class="py-2 px-3">Express.js</div>
+                    <div style="background-color: #E7E7E7;border-radius: 5px;font-weight: 600;" class="py-2 px-3">DBMS(mySQL)</div>
+                    <div style="background-color: #E7E7E7;border-radius: 5px;font-weight: 600;" class="py-2 px-3">MongoDB</div>
+                    <div style="background-color: #E7E7E7;border-radius: 5px;font-weight: 600;" class="py-2 px-3">Git</div>
+                    <div style="background-color: #E7E7E7;border-radius: 5px;font-weight: 600;" class="py-2 px-3">Github</div>
+                    <div style="background-color: #E7E7E7;border-radius: 5px;font-weight: 600;" class="py-2 px-3">Microsoft Azure</div>
+                </div>
+            </div>
         </div>
     </section>
     <script src="script.js"></script>
