@@ -111,7 +111,6 @@
         a:hover {
             color: #FFD395;
         }
-
         h1 {
             letter-spacing: 3px;
         }
@@ -296,20 +295,63 @@
             </div>
         </div>
     </section>
-    <section id="contact" class="section1 text-center d-flex align-items-center justify-content-center"
-        style="height: 100vh;">
-        <div class="col-lg-8 px-md-5 px-lg-5 px-3">
-            <h1 class="my-5" style="text-transform: uppercase;font-weight: 700;">Hey👋, Welcome to my protfolio </h1>
-            <div class="my-5" style="font-size: 1.25rem;">Unlock the door to innovation and creativity. I'm <span
-                    style="text-transform: uppercase;font-weight: 800;">prachet patel</span>, a full-stack developer
-                passionate about crafting seamless digital experiences. Explore my journey through code, creativity, and
-                collaboration.</div>
-            <div class="text-center"><a href="#projects" class="btn btn-lg bg-secondary px-5 py-3"
-                    style="font-weight: 700;box-shadow: 0 4px 8px rgba(255, 211, 149, 0.4);">PROJECTS</button></a>
+    <section id="contact" class="section1 d-flex flex-column align-items-center"
+        style="min-height: 100vh;
+        ">
+        <div class="col-lg-8 px-md-5 px-lg-5 px-3" style="margin-top: 10vh;">
+            <h1 class="my-3 text-center" style="text-transform: uppercase;font-weight: 700;">CONTACT</h1>
+            <div class="d-flex justify-content-around">
+                <div style="border: 6px solid #FFD395;width: 50px;border-radius: 10px;"></div>
             </div>
+            <div class="my-3 text-center" style="font-size: 1.25rem;">
+                Feel free to reach out by filling out the form below, and I'll respond to you promptly.</div>
+        </div>
+        <div class="col-lg-6 col-sm-11 px-md-5 px-lg-5 px-3 my-5" style="margin-top: 10vh;background-color: white;min-height:100vh;box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);border-radius: 10px;z-index: 1001;">
+            <form action="#" class="" method="post">
+                <div class="d-flex flex-column my-5">
+                  <label class="" for="name">Name</label>
+                  <input required="" placeholder="Enter Your Name" type="text" class="p-3" style="border-radius: 5px;background-color: #E7E7E7;border: 2px solid rgba(0, 0, 0, 0.1);" name="name" id="name">
+                </div>
+                <div class="d-flex flex-column my-5">
+                  <label class="" for="email">Email</label>
+                  <input required="" placeholder="Enter Your Email" type="email" class="p-3" style="border-radius: 5px;background-color: #E7E7E7;border: 2px solid rgba(0, 0, 0, 0.1);" name="email" id="email">
+                </div>
+                <div class="d-flex flex-column my-5">
+                  <label class="" for="message">Message</label>
+                  <textarea required="" cols="30" rows="10" class="p-3" style="border-radius: 5px;background-color: #E7E7E7;border: 2px solid rgba(0, 0, 0, 0.1);" placeholder="Enter Your Message" name="message" id="message"></textarea>
+                </div>
+                <div class="text-center"><button type="submit" class="btn btn-lg bg-secondary px-4 my-4 py-2"
+                    style="font-weight: 700;box-shadow: 0 4px 8px rgba(255, 211, 149, 0.4);">Submit</button></div>
+            </form>
+        </div>
     </section>
-    <footer>
-        
+    <footer style="min-height: 40vh;background-color:#FAFAFA;">
+        <div class="container">
+            <div class="d-flex flex-lg-row flex-sm-column flex-sm-column-reverse py-5" style="border-bottom: 1px solid #ccc;">
+                <div class="my-3">
+                    <h4>PRACHET PATEL</h4>
+                    <div>I seamlessly blend frontend finesse with backend prowess as a Full Stack Developer, ensuring the success of web projects from end to end. With expertise in both frontend and backend technologies, I deliver cohesive and high-performing solutions that elevate user experiences.</div>
+                </div>
+                <div class="my-3">
+                    <h4>SOCIAL</h4>
+                    <div class="d-flex gap-3" >
+                        <a href="https://www.linkedin.com/in/prachet-patel-6150a3264" target="_blank"><img
+                            src="assets/LinkedIN_black.svg" alt="linkedin" height="35px" width="35px"></a>
+                    <a href="https://instagram.com/prachet_patel/" target="_blank"><img src="assets/Instagram_black.svg"
+                            alt="linkedin" height="35px" width="35px"></a>
+                    <a href="https://github.com/PRACHETPATEL" target="_blank"><img src="assets/Github_black.svg" alt="linkedin"
+                            height="35px" width="35px"></a>
+                    <a href="https://leetcode.com/prachet35/" target="_blank"><img src="assets/leetcode_black.png" alt="linkedin"
+                            height="35px" width="35px"></a>
+                    <a href="mailto:prachet.edu@gamil.com?subject=Visited Your Protfolio, Great Website!!" target="_blank"><img
+                            src="assets/Gmail_black.svg" alt="linkedin" height="35px" width="35px"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                © Copyright 2024. Developed by <a href="/" style="text-decoration: underline;">Prachet Patel</a>. Design Reference <a href="https://www.rammaheshwari.com/" style="text-decoration: underline;">Link</a>
+            </div>
+        </div>
     </footer>
     <script src="script.js"></script>
 </body>
