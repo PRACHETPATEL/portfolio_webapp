@@ -1,18 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio website of Prachet Patel, showcasing skills in full-stack development with expertise in HTML5, JavaScript, CSS, Bootstrap, Java, JSP, Servlets, Angular.js, Node.js, Express.js, MongoDB, and deployment on Microsoft Azure VM.">
-    <meta name="keywords" content="Prachet, Prachte Patel, Prachet Patel Protfolio, full-stack developer, portfolio, HTML5, JavaScript, CSS, Bootstrap, Java, JSP, Servlets, Angular.js, Node.js, Express.js, MongoDB, Microsoft Azure, nginx, web development">
+    <meta name="description"
+        content="Portfolio website of Prachet Patel, showcasing skills in full-stack development with expertise in HTML5, JavaScript, CSS, Bootstrap, Java, JSP, Servlets, Angular.js, Node.js, Express.js, MongoDB, and deployment on Microsoft Azure VM.">
+    <meta name="keywords"
+        content="Prachet, Prachte Patel, Prachet Patel Protfolio, full-stack developer, portfolio, HTML5, JavaScript, CSS, Bootstrap, Java, JSP, Servlets, Angular.js, Node.js, Express.js, MongoDB, Microsoft Azure, nginx, web development">
     <meta name="author" content="Prachet">
     <meta property="og:title" content="Portfolio of Prachet Patel">
-    <meta property="og:description" content="Portfolio website of Prachet Patel, showcasing skills in full-stack development with expertise in HTML5, JavaScript, CSS, Bootstrap, Java, JSP, Servlets, Angular.js, Node.js, Express.js, MongoDB, and deployment on Microsoft Azure VM.">
+    <meta property="og:description"
+        content="Portfolio website of Prachet Patel, showcasing skills in full-stack development with expertise in HTML5, JavaScript, CSS, Bootstrap, Java, JSP, Servlets, Angular.js, Node.js, Express.js, MongoDB, and deployment on Microsoft Azure VM.">
     <meta property="og:image" content="https://prachet.me/assets/prachet.jpg">
     <meta property="og:url" content="https://prachet.me">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="assets/logo.png" type="image/icon png">
     <title>Prachet Patel</title>
+    <style>
+        .customnavbar {
+            position: fixed;
+            width: 100%;
+            background-color: white;
+            min-height: 10vh;
+            z-index: 1000;
+            box-shadow: 0 10px 100px rgba(0,0,0,0.1);
+        }
+
+        .section1 {
+            background: url('assets/background.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            /* filter: opacity(0.9); */
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        .leftnavbar{
+            position: absolute;
+            left:0;
+            min-height: 40vh;
+            width: 60px;
+            background-color: white;
+            box-shadow: rgba(100,100,111,0.2) 0px 7px 29px 0px;
+            padding: 0.5rem;
+        }
+        .smallnav{
+            position: fixed;
+            z-index: 1000;
+            width: 100%;
+            top: 10vh;
+            background-color: white;
+            box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: all 300ms;
+        }
+        a:hover{
+            color: #FFD395;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <header class="customnavbar d-flex justify-content-between align-items-center">
+        <div class="px-lg-5 px-md-5 px-3 d-flex align-items-center gap-3">
+            <img src="assets/profile3.png" alt="profile" height="50px" width="50px" style="border-radius: 50%;background-color: #FFD395;">
+            <a href="/" class="logo" style="font-size: 1rem;font-weight: 700;">PRACHET PATEL</a>
+        </div>
+        <div class="px-lg-5 px-md-5 px-3  d-lg-flex d-md-flex align-items-center gap-5 d-none">
+            <a href="#home" style="font-size: 0.9rem;font-weight: 700;">HOME</a>
+            <a href="#about" style="font-size: 0.9rem;font-weight: 700;">ABOUT</a>
+            <a href="#projects" style="font-size: 0.9rem;font-weight: 700;">PROJECTS</a>
+            <a href="#contact" style="font-size: 0.9rem;font-weight: 700;">CONTACT</a>
+        </div>
+        <div class="px-lg-5 px-md-5 px-3 d-lg-none d-md-none d-sm-block" style="font-size: 1.5rem;font-weight: 700;">
+            <i class="fa-solid fa-bars" id="bars" onclick="showNav()"></i>
+            <i class="fa-solid fa-times" id="times" onclick="closeNav()" style="display: none;"></i>
+        </div>
+    </header>
+    <div class="smallnav flex-column align-items-end " id="smallnav">
+        <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" style="border-bottom: 1px solid rgba(0, 0, 0, 0.1);border-top: 1px solid rgba(0, 0, 0, 0.1)"><a href="#home" style="font-size: 0.9rem;font-weight: 700;">HOME</a></div>
+        <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" style="border-bottom: 1px solid rgba(0, 0, 0, 0.1)"><a href="#about" style="font-size: 0.9rem;font-weight: 700;">ABOUT</a></div>
+        <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" style="border-bottom: 1px solid rgba(0, 0, 0, 0.1)"><a href="#projects" style="font-size: 0.9rem;font-weight: 700;">PROJECTS</a></div>
+        <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" ><a href="#contact" style="font-size: 0.9rem;font-weight: 700;">CONTACT</a></div>
+    </div>
+    <section class="section1 text-center d-flex align-items-center justify-content-center" style="height: 100vh;">
+        <div class="leftnavbar d-lg-flex flex-column d-md-flex d-none gap-4">
+            <a href="" target="_blank"><img src="assets/LinkedIN_black.svg" alt="linkedin" height="40px" width="40px"></a>
+            <a href="" target="_blank"><img src="assets/Instagram_black.svg" alt="linkedin" height="40px" width="40px"></a>
+            <a href="" target="_blank"><img src="assets/Github_black.svg" alt="linkedin" height="40px" width="40px"></a>
+            <a href="" target="_blank"><img src="assets/leetcode_black.png" alt="linkedin" height="40px" width="40px"></a>
+            <a href="" target="_blank"><img src="assets/Gmail_black.svg" alt="linkedin" height="40px" width="40px"></a>
+        </div>
+        <div class="col-lg-6 px-md-5 px-lg-5 px-3">
+            <h1 class="my-5" style="text-transform: uppercase;font-weight: 800;">Hey👋, Welcome to my protfolio </h1>
+            <div class="my-5" style="font-size: 1.25rem;">Unlock the door to innovation and creativity. I'm <span style="text-transform: uppercase;font-weight: 800;">prachet patel</span>, a full-stack developer passionate about crafting seamless digital experiences. Explore my journey through code, creativity, and collaboration.</div>
+            <div class="text-center"><a class="btn btn-lg bg-secondary px-5 py-3" style="font-weight: 900;">PROJECTS</button></a>
+        </div>
+    </section>
+    <script src="script.js"></script>
 </body>
 </html>
