@@ -3,7 +3,7 @@ window.addEventListener('load',(event)=>{
     const times=document.getElementById('times');
     const smallnav=document.getElementById('smallnav');
     const customnavbar=document.getElementById('customnavbar');
-    const nightmode=document.getElementById('nightmode');
+    // const nightmode=document.getElementById('nightmode');
     const root = document.documentElement;
     const home=document.getElementById('home');
     const contact=document.getElementById('contact');
@@ -31,14 +31,12 @@ window.addEventListener('load',(event)=>{
     window.changeMode=()=>{
         if(flag){
             root.style.setProperty('--bs-primary-rgb', '16,24,39');
-            // root.style.setProperty('--bs-secondary-rgb', '147,52,234');
             root.style.setProperty('--bs-tertiary-rgb', '30,41,60');
             root.style.setProperty('--bs-black-rgb', '255, 211, 149');
             root.style.setProperty('--bs-white-rgb', '156, 163, 175');
             home.style.background="RGBA(16,24,39)"
             contact.style.background="RGBA(30,41,60)"
-            nightmode.style.color="white";
-            // document.body.classList.add('text-secondary')
+            // nightmode.style.color="white";
             flag=false;
         }else{
             root.style.setProperty('--bs-primary-rgb', '255,255,255');
@@ -47,7 +45,7 @@ window.addEventListener('load',(event)=>{
             root.style.setProperty('--bs-white-rgb', '102, 102, 102');
             home.style.background="url('assets/background.jpg')"
             contact.style.background="url('assets/background.jpg')"
-            nightmode.style.color="#101827";
+            // nightmode.style.color="#101827";
             flag=true;
         }
     }
