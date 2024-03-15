@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is the best and secure URL Shortner out there with features like visualization of statistics for shortened URL.">
+    <meta name="keywords" content="URLSHORTENER, url shortner, URL SHORTNER">
+    <link rel="canonical" href="https://us.prachet.me/client/home">
+    <meta property="og:title" content="URLSHORTENER">
+    <meta property="og:description" content="One of the best and secure URL Shortner out there.">
+    <meta property="og:image" content="../images/logox.png">
+    <meta property="og:url" content="https://us.prachet.me/client/home">
+    <link rel="stylesheet" href="../styles/error.css">
+    <title>Error</title>
+</head>
+<body>
+    <div class="flex-container">
+        <div class="text-center">
+          <h1>
+            <span class="fade-in" id="digit1"><%=d1%></span>
+            <span class="fade-in" id="digit2"><%=d2%></span>
+            <span class="fade-in" id="digit3"><%=d3%></span>
+          </h1>
+          <h3 class="fadeIn"><%=title%></h3>
+          <a href="/client/home"><button type="button" name="button">Return To Home</button></a>
+        </div>
+      </div>
+      <script>
+        window.addEventListener( "pageshow", function ( event ) {
+            let historyTraversal = event.persisted ||
+                ( typeof window.performance != "undefined" &&
+                    window.performance.navigation.type === 2 );
+            if ( historyTraversal ) {
+                // Handle page restore.
+                window.location.reload();
+            }
+        });
+    </script>
+</body>
+</html>
