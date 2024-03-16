@@ -31,6 +31,7 @@ router.get('/admin',async (req,res)=>{
 router.get('/admin/dashboard',validateToken,async (req,res)=>{
     res.status(200);
     const profiledata=await profile.findOne();
-    res.render('dashboard', {profiledata:profiledata});
+    const projectsdetails=await project.find();
+    res.render('dashboard', {profiledata:profiledata,projectsdetails:projectsdetails});
 });
 module.exports=router;

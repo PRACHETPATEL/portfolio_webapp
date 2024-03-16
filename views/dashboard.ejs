@@ -25,8 +25,9 @@
             <div class="px-lg-5 px-md-5 px-3 d-flex align-items-center gap-3">
                 <img src="../../assets/profile.webp" alt="profile" height="50px" width="50px"
                     style="border-radius: 50%;background-color: #FFD395;">
-                <a class="text-black logo" href="/" style="font-size: 1rem;font-weight: 700;">
-                    <%= profiledata.name %>
+                <a class="text-black logo" href="#" style="font-size: 1rem;font-weight: 700;">
+                    <input type="text" class=" bg-primary text-black" style="width: 100px;height: auto;"
+                        onchange="updatePortfolioName(this)" value="<%= profiledata.name %>">
                 </a>
                 <!-- <svg stroke="currentColor" style="color: #101827;" title="nightmode" fill="currentColor" id="nightmode" onclick="changeMode()" stroke-width="0" viewBox="0 0 16 16" class="hidden md:block text-purple-700 cursor-pointer" height="24.8" width="21" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path>
@@ -40,10 +41,10 @@
                 </label>
             </div>
             <div class="px-lg-5 px-md-5 px-3  d-lg-flex d-md-flex align-items-center gap-5 d-none">
-                <a class="text-black " href="/" style="font-size: 0.9rem;font-weight: 700;">HOME</a>
-                <a class="text-black " href="#overview" style="font-size: 0.9rem;font-weight: 700;">OVERVIEW</a>
-                <a class="text-black " href="#techstack" style="font-size: 0.9rem;font-weight: 700;">TECHSTACK</a>
-                <a class="text-black " href="#links" style="font-size: 0.9rem;font-weight: 700;">LINKS</a>
+                <a class="text-black " href="/" style="font-size: 0.9rem;font-weight: 700;">HOMEPAGE</a>
+                <a class="text-black " href="#SKILLS" style="font-size: 0.9rem;font-weight: 700;">SKILLS</a>
+                <a class="text-black " href="#PROJECTS" style="font-size: 0.9rem;font-weight: 700;">PROJECTS</a>
+                <a class="text-black " href="#LINKS" style="font-size: 0.9rem;font-weight: 700;">LINKS</a>
 
             </div>
 
@@ -60,56 +61,162 @@
             <hr class="bg-primary m-0">
             <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" onclick="closeNav()"><a
                     class="text-end text-black" href="/"
-                    style="font-size: 0.9rem;font-weight: 700;width: 100%;">HOME</a></div>
+                    style="font-size: 0.9rem;font-weight: 700;width: 100%;">HOMEPAGE</a></div>
             <hr class="bg-primary m-0">
             <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" onclick="closeNav()"><a
-                    class="text-end text-black" href="#overview"
-                    style="font-size: 0.9rem;font-weight: 700;width: 100%;">OVERVIEW</a></div>
+                    class="text-end text-black" href="#SKILLS"
+                    style="font-size: 0.9rem;font-weight: 700;width: 100%;">SKILLS</a></div>
             <hr class="bg-primary m-0">
             <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" onclick="closeNav()"><a
-                    class="text-end text-black" href="#techstack"
-                    style="font-size: 0.9rem;font-weight: 700;width: 100%;">TECHSTACK</a></div>
+                    class="text-end text-black" href="#PROJECTS"
+                    style="font-size: 0.9rem;font-weight: 700;width: 100%;">PROJECTS</a></div>
             <hr class="bg-primary m-0">
             <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" onclick="closeNav()"><a
-                    class="text-end text-black" href="#links"
+                    class="text-end text-black" href="#LINKS"
                     style="font-size: 0.9rem;font-weight: 700;width: 100%;">LINKS</a></div>
 
         </div>
-        <section id="home" class="section1 d-flex align-items-center justify-content-center"
+        <section id="home" class="section1 d-flex text-center align-items-center justify-content-center"
             style="min-height: 100vh;">
-            
+            <div class="col-lg-8 col-12 px-md-5 px-lg-5 px-3">
+                <h1 class="my-5 text-black" style="text-transform: uppercase;font-weight: 700;"><textarea
+                        class="w-100 text-center bg-tertiary text-black" onchange="updateHomepageHeading(this)"
+                        type="text"><%= profiledata.homepage_heading %> </textarea></h1>
+                <div class="my-5" style="font-size: 1.25rem;"><textarea
+                        class="w-100 text-center  bg-tertiary text-black" onchange="updateHomepageDescription(this)"
+                        rows="3"><%= profiledata.homepage_description %></textarea></div>
+                <div class="text-center"><a href="#projects" class="btn text-tertiary btn-lg bg-secondary px-5 py-3"
+                        style="font-weight: 700;box-shadow: 0 4px 8px rgba(255, 211, 149, 0.4);">PROJECTS</a>
+                </div>
+        </section>
+        <section class="section2 bg-tertiary d-flex flex-column align-items-center" id="about"
+            style="min-height: 100vh;">
+            <div class="col-lg-8 col-12 px-md-5 px-lg-5 px-3" style="margin-top: 10vh;">
+                <h1 class="my-3 text-center text-black" style="text-transform: uppercase;font-weight: 700;">ABOUT ME
+                </h1>
+                <div class="d-flex justify-content-around">
+                    <div style="border: 6px solid #FFD395;width: 50px;border-radius: 10px;"></div>
+                </div>
+                <div class="my-3 text-center w-100" style="font-size: 1.25rem;"><textarea
+                        class="w-100 text-center  bg-primary text-black" onchange="updateAboutpageDescription(this)"
+                        rows="3"><%= profiledata.aboutpage_description  %></textarea></div>
+            </div>
+            <div
+                class="container d-flex flex-lg-row flex-sm-column flex-column  w-100 my-5 px-lg-5 px-md-5 px-3 justify-content-between">
+                <div class="col-lg-5">
+                    <h4 style="font-weight: 700;" class="my-5 text-black">Discover More About Me!</h4>
+                    <div style="text-align: justify;">
+                        <%var counter=0;%>
+                            <% profiledata.about.forEach(function(about){ %>
+                                <div class="d-flex align-items-center"><textarea class="flex-grow-1 bg-primary text-black"
+                                    onchange="updateAbout('<%=counter%>',this)" rows="3"><%=about%> </textarea>
+                                    <span class="px-2 fa-solid fa-trash"
+                                            onclick="removeAboutParagraph('<%=counter%>');"></span></div>
+                                <%counter++;%>
+                                    <% }); %>
+                                    
+                    </div>
+                    <div class="my-5 d-flex justify-content-around"><button onclick="addNewAboutParagraph()"
+                            class="btn col-lg-8 col-md-8 col-sm-10 col-12 text-tertiary btn-lg bg-secondary px-4 py-2"
+                            style="font-weight: 700;box-shadow: 0 4px 8px rgba(255, 211, 149, 0.4);">Add One More
+                            Paragraph</button>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <h4 style="font-weight: 700; " class="my-5 text-black">My Skills</h4>
+                    <div class="d-flex flex-wrap w-100 gap-3">
+                        <%var counter=0;%>
+                            <% profiledata.skills.forEach(function(skill){ %>
+                                <div style="border-radius: 5px;font-weight: 600;" class="py-2 bg-primary px-3">
+                                    <%=skill%> <span class="px-2 fa-solid fa-times"
+                                            onclick="removeSkill('<%=counter%>');"></span>
+                                </div>
+                                <%counter++;%>
+                                    <% }); %>
+
+                    </div>
+                    <div class="d-flex flex-wrap w-100 my-5 gap-3">
+                        <input type="text" class=" bg-primary w-100 p-1 text-black" style="width: 100px;height: auto;"
+                            onchange="addSkill(this)" placeholder="Add Skill">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section3  d-flex flex-column align-items-center" id="projects" style="min-height: 100vh;">
+            <div class="col-lg-8 col-12 px-md-5 px-lg-5 px-3" style="margin-top: 10vh;">
+                <h1 class="my-3 text-center text-black" style="text-transform: uppercase;font-weight: 700;">PROJECTS</h1>
+                <div class="d-flex justify-content-around">
+                    <div style="border: 6px solid #FFD395;width: 50px;border-radius: 10px;"></div>
+                </div>
+                <div class="my-3 text-center" style="font-size: 1.25rem;">
+                    <textarea
+                        class="w-100 text-center  bg-primary text-black" onchange="updateProjectspageDescription(this)"
+                        rows="3"><%= profiledata.projectspage_description %></textarea>
+                    <!-- Explore a collection of personal projects that I've crafted. Each project is accompanied by its own case study, providing an in-depth look into its development process, challenges faced, and solutions implemented. -->
+                </div>
+            </div>
+            <div class="col-12">
+                <% for (let i = 0; i < projectsdetails.length; i++) { %>
+                    <div class="container bg-tertiary d-flex flex-lg-row flex-sm-column flex-column my-5 px-lg-5 px-md-5 px-3 justify-content-between" style="border:1px solid rgba(0, 0, 0, 0.1);width: 95%;">
+                        <div class="col-lg-5 my-lg-5" style="background-image: url('../assets/project<%=(i+1)%>.webp');height: 40vh;background-position: center;background-size: contain;background-repeat: no-repeat;"></div>
+                        <div class="col-lg-5 my-lg-5">
+                            <h4 style="font-weight: 700;" class="text-black"><a class="text-black" href="<%=projectsdetails[i].project_link%>" target="_blank"><%=projectsdetails[i].project_name%></a></h4>
+                            <div class="mt-3">
+                                <%=projectsdetails[i].project_description%>
+                            </div>
+                            <div class="text-center">
+                                <div class="my-5"><a href="/projectdetails/<%=projectsdetails[i]._id%>" target="_blank`" class="btn text-tertiary btn-lg bg-secondary  px-4 py-2"
+                                    style="font-weight: 700;box-shadow: 0 4px 8px rgba(255, 211, 149, 0.4);width: 100%;">Explore More</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
         </section>
         <footer class="bg-tertiary" style="min-height: 40vh;">
             <div class="container">
                 <div class="d-flex flex-lg-row flex-sm-column flex-column flex-sm-column-reverse flex-column-reverse py-5"
                     style="border-bottom: 1px solid #ccc;">
-                    <div class="m-3">
+                    <div class="m-3 col-lg-8">
                         <h4 class="text-black">
                             <%= profiledata.name %>
                         </h4>
                         <div>
-                            <%= profiledata.footer_description %>
+                            <textarea class="w-100 bg-primary text-black" onchange="updateFooterDescription(this)"
+                                rows="3"><%= profiledata.footer_description %></textarea>
                         </div>
                     </div>
-                    <div class="m-3">
+                    <div class="m-3 col-lg-4">
                         <h4 class="text-black">SOCIAL</h4>
-                        <div class="d-flex gap-3">
-                            <a href="<%= profiledata.links[0] %>" target="_blank"><i style="font-size: 30px;"
-                                    class="fa-brands text-black fa-linkedin"></i></a>
-                            <a href="<%= profiledata.links[1] %>" target="_blank"><i style="font-size: 30px;"
-                                    class="fa-brands text-black fa-square-instagram"></i></a>
-                            <a href="<%= profiledata.links[2] %>" target="_blank"><i style="font-size: 30px;"
-                                    class="fa-brands text-black fa-square-github"></i></a>
-                            <a href="<%= profiledata.links[3] %>" target="_blank"><i style="font-size: 30px;"
-                                    class="text-black fa-solid fa-envelope"></i></a>
+                        <div class="gap-3">
+                            <%var counter=0;%>
+                                <% profiledata.links.forEach(function(link){ %>
+                                    <div class="d-flex align-items-center">
+                                        <input type="text" class="flex-grow-1 w-100 my-2 bg-primary text-black"
+                                            style="width: 100px;height: auto;"
+                                            onchange="updateLinks('<%=counter%>',this)" value="<%= link %>">
+                                            <span class="px-2 fa-solid fa-trash"
+                                            onclick="removeLink('<%=counter%>');"></span>
+                                    </div>
+                                    <%counter++;%>
+                                        <% }); %>
+                                            <div class="my-2 d-flex justify-content-around"><button target="_blank"
+                                                    class="btn col-lg-8 col-md-8 col-sm-10 col-12 text-tertiary btn-lg bg-secondary px-4 py-2"
+                                                    style="font-weight: 700;box-shadow: 0 4px 8px rgba(255, 211, 149, 0.4);" onclick="addNewLink()">Add
+                                                    One More
+                                                    Link</button>
+                                            </div>
+
                         </div>
                     </div>
                 </div>
-                <div class="text-center mt-3">
-                    © Copyright 2024. Developed by <a class="text-black" href="/" style="text-decoration: underline;">
-                        <%= profiledata.developer %>
-                    </a>. Design Reference <a class="text-black" href="https://www.rammaheshwari.com/" target="_blank"
-                        style="text-decoration: underline;">Link</a>
+                <div class="text-center my-3">
+                    © Copyright 2024. Developed by <span class="text-black" style="text-decoration: underline;">
+                        <input type="text" class=" bg-primary text-black" style="width: 100px;height: auto;"
+                            onchange="updateFooterDeveloper(this)" value="<%= profiledata.developer %>">
+                    </span>. Design Reference <a class="text-black" href="https://www.rammaheshwari.com/"
+                        target="_blank" style="text-decoration: underline;">Link</a>
                 </div>
             </div>
         </footer>
@@ -118,8 +225,10 @@
         <div class="loader"></div>
     </div>
     <script src="../../dashboard.js"></script>
+    <script src="../../dashboardchanges.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"
         integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
+
 </html>
