@@ -5,7 +5,7 @@ const connectDB = require("./db/connectDB");
 let path=require('path');
 const logger=require("morgan");
 const errorHandler = require('./middleware/errorHandler');
-const contact = require('./models/contact.model');
+const apiRouter=require('./router/api');
 connectDB();
 app.set("view engine","ejs");
 app.use(express.json());
@@ -16,19 +16,7 @@ app.use(express.static(path.join(__dirname,"./public")));
 app.get("/",(req,res)=>{
     res.render('index', { title: 'Welcome to My Website', message: 'Hello, world!' });
 });
-app.post('/api/contact',async (req,res)=>{
-    const {name,email,message}=req.body;
-    console.log(name,email,message);
-    const contactrecord=await contact.create({
-        name:name,
-        email:email,
-        message:message
-    })
-    if(contactrecord){
-        res.json({status:200,message:"Response Recoded!!"});
-    }
-
-})
+app.use('/api',apiRouter);
 app.use(errorHandler);
 app.get("*",(req, res) => {
     res.status(404);
