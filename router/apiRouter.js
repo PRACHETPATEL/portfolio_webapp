@@ -3,9 +3,13 @@ const { contactForm } = require('../controller/contact');
 const router=express.Router();
 const path=require('path');
 const fs=require('fs');
+const admin = require('../models/admin.model');
+require("dotenv").config();
+const jwt=require("jsonwebtoken");
 // const project = require('../models/project.model');
 // const profile = require('../models/profile.model');
 router.post("/contact",contactForm);
+
 router.get('/resume/:id',(req,res)=>{
     const filePath = path.join(__dirname, '../securefiles', 'resume.pdf'); // Path to your secure PDF file
     const stat = fs.statSync(filePath);
@@ -17,6 +21,31 @@ router.get('/resume/:id',(req,res)=>{
     if(req.params.id===process.env.API_KEY){
         const readStream = fs.createReadStream(filePath);
         readStream.pipe(res);
+    }
+});
+router.get('/adminloginstatus',(req,res)=>{
+    const check=req.cookies.logged_in;
+    if(check){
+        res.json({status:200});
+    }else{
+        res.json({status:404});
+    }
+});
+router.post('/validateadmin',async (req,res)=>{
+    const {username,password}=req.body;
+    const admindata=await admin.findOne();
+    if(username===admindata.username&&password===admindata.password){
+        
+        const accessToken = jwt.sign({
+            admin: {
+              id:admindata.id
+            },
+        },process.env.ACCESS_TOKEN_SECERT,{expiresIn:"1440m"});
+        res.cookie('token',accessToken,{ maxAge: 86400000, httpOnly: true });
+        res.cookie('logged_in',{"value":"yes"},{ maxAge: 86400000, httpOnly: true  }); 
+        res.json({status:200,message:"Logged In Successfully"});
+    }else{
+        res.json({status:503,message:"Unauthorized"});
     }
 });
 // router.post("/profile",async (req,res)=>{

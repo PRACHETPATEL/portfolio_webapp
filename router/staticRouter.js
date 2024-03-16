@@ -1,10 +1,9 @@
 const express=require('express');
 const router=express.Router();
-const path=require('path');
-const fs=require('fs');
 const profile = require('../models/profile.model');
 const objectIdRegex = /^[0-9a-fA-F]{24}$/;
 const project = require('../models/project.model'); 
+const validateToken = require('../middleware/authenticateAdmin');
 router.get('/',async (req,res)=>{
     const profiledata=await profile.findOne();
     const projectsdetails=await project.find();
@@ -24,4 +23,14 @@ router.get('/projectdetails/:id',async (req,res)=>{
         res.redirect("/");
     }
 })
+router.get('/admin',async (req,res)=>{
+        res.status(200);
+        const profiledata=await profile.findOne();
+        res.render('admin', {profiledata:profiledata});
+})
+router.get('/admin/dashboard',validateToken,async (req,res)=>{
+    res.status(200);
+    const profiledata=await profile.findOne();
+    res.render('dashboard', {profiledata:profiledata});
+});
 module.exports=router;
