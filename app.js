@@ -5,7 +5,8 @@ const connectDB = require("./db/connectDB");
 let path=require('path');
 const logger=require("morgan");
 const errorHandler = require('./middleware/errorHandler');
-const apiRouter=require('./router/api');
+const apiRouter=require('./router/apiRouter');
+const staticRouter=require('./router/staticRouter');
 connectDB();
 app.set("view engine","ejs");
 app.use(express.json());
@@ -13,9 +14,7 @@ app.set('trust proxy', true);
 app.use(logger("tiny"));
 app.set('views', path.join(__dirname, './views'));
 app.use(express.static(path.join(__dirname,"./public")));
-app.get("/",(req,res)=>{
-    res.render('index', { title: 'Welcome to My Website', message: 'Hello, world!' });
-});
+app.use("/",staticRouter);
 app.use('/api',apiRouter);
 app.use(errorHandler);
 app.get("*",(req, res) => {
