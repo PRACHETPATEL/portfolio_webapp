@@ -13,30 +13,37 @@ const multer = require('multer')
 const updateProfie = require('../controller/uploadprofile')
 const updateProjectpic = require('../controller/uploadprojectpiv')
 const addnewproject = require('../controller/addnewproject')
-const objectIdRegex = /^[0-9a-fA-F]{24}$/;
+const objectIdRegex = /^[0-9a-fA-F]{24}$/
 router.post('/contact', contactForm)
 router.post('/upload-profilepic', validateToken, updateProfie)
 router.post('/upload-projectpic/:id', validateToken, updateProjectpic)
 router.post('/project', validateToken, addnewproject)
-router.delete('/project/:id', validateToken,async (req,res)=>{
-  if(objectIdRegex.test(req.params.id)){
-    const response=await project.findByIdAndDelete(req.params.id);
-    let filePath=path.join(__dirname,'../public/assets/'+response.project_image)
+router.delete('/project/:id', validateToken, async (req, res) => {
+  if (objectIdRegex.test(req.params.id)) {
+    const response = await project.findByIdAndDelete(req.params.id)
+    let filePath = path.join(
+      __dirname,
+      '../public/assets/' + response.project_image
+    )
     if (fs.existsSync(filePath)) {
-      fs.unlink(filePath, (err) => {
+      fs.unlink(filePath, err => {
         if (err) {
-          console.error('Error deleting file:', err);
+          console.error('Error deleting file:', err)
         } else {
-          console.log('File deleted successfully');
+          console.log('File deleted successfully')
         }
-      });
+      })
     } else {
-      console.log('File does not exist');
+      console.log('File does not exist')
     }
-    if(response) return res.json({status:200,message:"project deleted successfully!!"})
-    return res.json({status:400,message:"project not deleted"})
-  }else{
-    res.redirect("/")
+    if (response)
+      return res.json({
+        status: 200,
+        message: 'project deleted successfully!!'
+      })
+    return res.json({ status: 400, message: 'project not deleted' })
+  } else {
+    res.redirect('/')
   }
 })
 router.get('/resume/:id', (req, res) => {
@@ -175,7 +182,7 @@ router.put('/profile', validateToken, async (req, res) => {
 router.put('/project/:id', validateToken, async (req, res) => {
   let { index, value, number, id } = req.body
   let projectupdate
-  if(objectIdRegex.test(req.params.id)){
+  if (objectIdRegex.test(req.params.id)) {
     switch (index) {
       case 0:
         projectupdate = await project.findByIdAndUpdate(id, {
@@ -192,6 +199,66 @@ router.put('/project/:id', validateToken, async (req, res) => {
           visiblity: value
         })
         break
+      case 3:
+        projectupdate = await project.findByIdAndUpdate(id, {
+          projectspage_description: value
+        })
+        break
+      case 4:
+        projectupdate = await project.findByIdAndUpdate(id, {
+          projectsource_link: value
+        })
+        break
+      case 5:
+        projectupdate = await project.findByIdAndUpdate(id, {
+          projectspage_overview: value
+        })
+        break
+      case 6:
+        projectdata = await project.findById(id)
+        const featuresarray = projectdata.projectspage_features
+        featuresarray[number] = value
+        projectupdate = await project.updateOne({
+          projectspage_features: featuresarray
+        })
+        break
+      case 7:
+        projectdata = await project.findById(id)
+        const featuresarrayx = projectdata.projectspage_features
+        featuresarrayx.splice(number, 1)
+        projectupdate = await project.updateOne({
+          projectspage_features: featuresarrayx
+        })
+        break
+      case 8:
+        projectdata = await project.findById(id)
+        const featuresarrayy = projectdata.projectspage_features
+        featuresarrayy[featuresarrayy.length] = ''
+        projectupdate = await project.updateOne({
+          projectspage_features: featuresarrayy
+        })
+        break
+      case 9:
+        projectdata = await project.findById(id)
+        const techstack = projectdata.techstack
+        techstack.splice(number, 1)
+        projectupdate = await project.updateOne({
+          techstack: techstack
+        })
+        break
+      case 10:
+        projectdata = await project.findById(id)
+        const techstackx = projectdata.techstack
+        techstackx[techstackx.length]=value
+        projectupdate = await project.updateOne({
+          techstack: techstackx
+        })
+        break
+      case 11:
+        projectupdate = await project.findByIdAndUpdate(id, {
+          project_link: value
+        })
+        break
     }
     return res.json({
       status: 200,
@@ -199,6 +266,6 @@ router.put('/project/:id', validateToken, async (req, res) => {
       projectupdate: projectupdate
     })
   }
-  res.redirect("/")
+  res.redirect('/')
 })
 module.exports = router
