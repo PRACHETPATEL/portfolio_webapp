@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="icon" href="../../assets/logo.webp" type="image/icon png">
+    <link rel="icon" href="../../assets/logo.webp" type="image/icon png">   
     <title>
         <%= profiledata.name %>
     </title>
@@ -172,7 +172,7 @@
                     <div class="container bg-tertiary d-flex flex-lg-row flex-sm-column flex-column my-5 px-lg-5 px-md-5 px-3 justify-content-between" style="border:1px solid rgba(0, 0, 0, 0.1);width: 95%;">
                         <div id='<%=projectsdetails[i]._id%>' class="col-lg-5 my-lg-5" style="background-image: url('../assets/project<%=(i+1)%>.webp');height: 40vh;background-position: center;background-size: contain;background-repeat: no-repeat;position: relative;">
                             <div style="position: absolute;right: 14px;bottom: 0px;">
-                                <label class="bg-secondary px-5 py-2 mb-4" for="projectpic<%=i%>" style="color: black;">EDIT IMAGE <i class=" fa fa-pen"></i></label>
+                                <label class="bg-secondary px-5 py-2 mb-4" for="projectpic<%=i%>" style="font-weight: 700;color: black;">EDIT IMAGE <i class=" fa fa-pen"></i></label>
                                 <input type="file" name="projectpic<%=i%>" id="projectpic<%=i%>" onchange="uploadProjectImage(this,'<%=projectsdetails[i]._id%>')" hidden>
                             </div>
                         </div>
@@ -187,14 +187,133 @@
                                 
                             </div>
                             <div class="text-center">
-                                <div class="my-5"><a href="/admin/dashboard/projectdetails/<%=projectsdetails[i]._id%>" target="_blank`" class="btn text-tertiary btn-lg bg-secondary  px-4 py-2"
-                                    style="font-weight: 700;box-shadow: 0 4px 8px rgba(255, 211, 149, 0.4);width: 100%;">Edit More</button></a>
+                                <div class="my-5">
+                                    <a href="/admin/dashboard/projectdetails/<%=projectsdetails[i]._id%>" target="_blank" class="btn text-tertiary btn-lg bg-secondary  px-4 py-2"
+                                    style="font-weight: 700;box-shadow: 0 4px 8px rgba(255, 211, 149, 0.4);width: 100%;">Edit More</a>
                                 </div>
                             </div>
+                            <div class="mb-3">
+                                <div class="d-flex flex-column align-items-center gap-1">
+                                    <h6><label  for="visiblity<%=i%>">Change Visibility:</label></h6>
+                                    <select id="visiblity<%=i%>" onchange="changProjectVisiblity('<%=projectsdetails[i]._id%>',this)" class="btn text-tertiary btn-lg bg-secondary px-4 py-2"
+                                    style="font-weight: 700;box-shadow: 0 4px 8px rgba(255, 211, 149, 0.4);width: 100%;">
+                                    <% if(projectsdetails[i].visiblity==='public'){%>
+                                    <option value="public" selected>PUBLIC</option>
+                                    <option value="private">PRIVATE</option>
+                                    <%} else { %>
+                                    <option value="public">PUBLIC</option>
+                                    <option value="private" selected>PRIVATE</option>
+                                    <% } %>
+                                    </select>
+                                </div>
+                            </div>
+                            <%if(i>1){%>
+                                <div class="mb-3">
+                                    <div class="d-flex flex-column align-items-center gap-1">
+                                        <button id="deleteproject<%=i%>" onclick="deleteProject('<%=projectsdetails[i]._id%>')" class="btn text-tertiary btn-lg bg-secondary px-4 py-2"
+                                        style="font-weight: 700;box-shadow: 0 4px 8px rgba(255, 211, 149, 0.4);width: 100%;">Delete Project <i class="fa fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            <%}%>
                         </div>
                     </div>
                 <% } %>
+                <div  id="form" class="container bg-tertiary d-none flex-column my-5 px-lg-5 px-md-5 px-3 justify-content-around align-items-center" style="border:1px solid rgba(0, 0, 0, 0.1);width: 95%;">
+                    <div  class=" col-lg-8 col-sm-11 col-11 px-md-5 bg-primary px-lg-5 px-3 my-5"
+                    style="margin-top: 10vh;background-color: white;min-height:40vh;box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);border-radius: 10px;z-index: 999;">
+                    <form id="project_form" class="d-block" method="post">
+                        <h1 class="mt-4  text-black text-center">Add New Project</h1>
+                        <div class="d-flex flex-column mt-4">
+                            <label class="" for="project_image">Project Image</label>
+                            <input required="" placeholder="Enter Project Name" type="file" class="p-3 bg-primary text-white"
+                                style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);" name="project_image" id="project_image">
+                        </div>
+                        <div class="d-flex flex-column mt-4">
+                            <label class="" for="project_name">Project Name</label>
+                            <input required="" placeholder="Enter Project Name" type="text" class="p-3 bg-primary text-white"
+                                style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);" name="project_name" id="project_name">
+                        </div>
+                        <div class="d-flex flex-column my-4">
+                            <label class="project_type" for="project_type">Project Type</label>
+                            <input required="" placeholder="Enter Project Type" type="text"
+                                class="p-3 bg-primary text-white"
+                                style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);" name="project_type" id="project_type">
+                        </div>
+                        <div class="d-flex flex-column my-4">
+                            <label class="" for="project_description">Project Description</label>
+                            <input required="" placeholder="Enter Project Description" type="text"
+                                class="p-3 bg-primary text-white"
+                                style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);" name="project_description" id="project_description">
+                        </div>
+                        <div class="d-flex flex-column my-4">
+                            <label class="" for="projectspage_heading">Projectspage Heading</label>
+                            <input required="" placeholder="Enter Projectspage Heading" type="text"
+                                class="p-3 bg-primary text-white"
+                                style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);" name="projectspage_heading" id="projectspage_heading">
+                        </div>
+                        <div class="d-flex flex-column my-4">
+                            <label class="" for="projectspage_description">Projectspage Description</label>
+                            <input required="" placeholder="Enter Projectspage Description" type="text"
+                                class="p-3 bg-primary text-white"
+                                style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);" name="projectspage_description" id="projectspage_description">
+                        </div>
+                        <div class="d-flex flex-column my-4">
+                            <label class="" for="projectspage_overview">Projectspage Overview</label>
+                            <input required="" placeholder="Enter Projectspage Overview" type="text"
+                                class="p-3 bg-primary text-white"
+                                style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);" name="projectspage_overview" id="projectspage_overview">
+                        </div>
+                        <div class="d-flex flex-column my-4">
+                            <label class="" for="projectspage_features">Projectspage Features</label>
+                            <input required="" placeholder="Use (, ) for new paragraph" type="text"
+                                class="p-3 bg-primary text-white"
+                                style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);" name="projectspage_features" id="projectspage_features">
+                        </div>
+                        <div class="d-flex flex-column my-4">
+                            <label class="" for="techstack">Techstack</label>
+                            <input required="" placeholder="Use (, ) new Tech" type="text"
+                                class="p-3 bg-primary text-white"
+                                style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);" name="techstack" id="techstack">
+                        </div>
+                        <div class="d-flex flex-column my-4">
+                            <label class="" for="projectsource_link">Projectsource Link</label>
+                            <input required="" placeholder="Enter Projectsource Link" type="url"
+                                class="p-3 bg-primary text-white"
+                                style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);" name="projectsource_link" id="projectsource_link">
+                        </div>
+                        <div class="d-flex flex-column my-4">
+                            <label class="" for="project_link">Project Live Link</label>
+                            <input required="" placeholder="Enter >Project Live Link" type="url"
+                                class="p-3 bg-primary text-white"
+                                style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);" name="project_link" id="project_link">
+                        </div>
+                        <div class="d-flex flex-column my-4">
+                            <label class="" for="developers">Developers</label>
+                            <input required="" placeholder="Use (, ) anohter developer" type="text"
+                                class="p-3 bg-primary text-white"
+                                style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);" name="developers" id="developers">
+                        </div>
+                        <div class="d-flex flex-column my-4">
+                            <label class="" for="visiblity">Project Visibility</label>
+                            <select required=""
+                                class="p-3 bg-primary text-white"
+                                style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);" name="visiblity" id="visiblity">
+                                <option value="public" selected>PUBLIC</option>
+                                <option value="private">PRIVATE</option>
+                            </select>
+                        </div>
+                        <div class="text-center my-5"><button type="submit"
+                                class="btn btn-lg w-100 text-tertiary bg-secondary px-4 py-2"
+                                style="font-weight: 700;box-shadow: 0 4px 8px rgba(255, 211, 149, 0.4);">Submit</button>
+                        </div>
+                    </form>
+                    <div id="loader2" class="w-100 d-none justify-content-between align-items-center" style="height: 80vh;">
+                        <div class="loader"></div>
+                    </div>
+                </div>
             </div>
+            <div class="my-5 px-lg-5 px-md-5 px-3 container d-flex justify-content-around"><button style="font-weight: 700;" id="button" class="btn btn-lg px-4 py-2 text-tertiary bg-secondary col-lg-6 col-md-8 col-sm-10 col-12" type="button" id="addnewproject" onclick="showForm(this)"> Add New Project</button></div>    
+
         </section>
         <footer class="bg-tertiary" style="min-height: 40vh;">
             <div class="container" id="footer" >
@@ -215,7 +334,7 @@
                             <%var counter=0;%>
                                 <% profiledata.links.forEach(function(link){ %>
                                     <div class="d-flex align-items-center">
-                                        <input type="text" class="flex-grow-1 w-100 my-2 bg-primary text-black"
+                                        <input type="url" class="flex-grow-1 w-100 my-2 bg-primary text-black"
                                             style="width: 100px;height: auto;"
                                             onchange="updateLinks('<%=counter%>',this)" value="<%= link %>">
                                             <span class="px-2 fa-solid fa-trash"

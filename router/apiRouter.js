@@ -9,14 +9,36 @@ const jwt = require('jsonwebtoken')
 const validateToken = require('../middleware/authenticateAdmin')
 const project = require('../models/project.model')
 const profile = require('../models/profile.model')
-const multer = require('multer');
+const multer = require('multer')
 const updateProfie = require('../controller/uploadprofile')
 const updateProjectpic = require('../controller/uploadprojectpiv')
-
+const addnewproject = require('../controller/addnewproject')
+const objectIdRegex = /^[0-9a-fA-F]{24}$/;
 router.post('/contact', contactForm)
-router.post('/upload-profilepic',validateToken,updateProfie);
-router.post('/upload-projectpic/:id',validateToken,updateProjectpic);
-
+router.post('/upload-profilepic', validateToken, updateProfie)
+router.post('/upload-projectpic/:id', validateToken, updateProjectpic)
+router.post('/project', validateToken, addnewproject)
+router.delete('/project/:id', validateToken,async (req,res)=>{
+  if(objectIdRegex.test(req.params.id)){
+    const response=await project.findByIdAndDelete(req.params.id);
+    let filePath=path.join(__dirname,'../public/assets/'+response.project_image)
+    if (fs.existsSync(filePath)) {
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          console.error('Error deleting file:', err);
+        } else {
+          console.log('File deleted successfully');
+        }
+      });
+    } else {
+      console.log('File does not exist');
+    }
+    if(response) return res.json({status:200,message:"project deleted successfully!!"})
+    return res.json({status:400,message:"project not deleted"})
+  }else{
+    res.redirect("/")
+  }
+})
 router.get('/resume/:id', (req, res) => {
   const filePath = path.join(__dirname, '../securefiles', 'resume.pdf') // Path to your secure PDF file
   const stat = fs.statSync(filePath)
@@ -57,28 +79,12 @@ router.post('/validateadmin', async (req, res) => {
       { value: 'yes' },
       { maxAge: 86400000, httpOnly: true }
     )
-    res.json({ status: 200, message: 'Logged In Successfully' })
-  } else {
-    res.json({ status: 503, message: 'Unauthorized' })
+    return res.json({ status: 200, message: 'Logged In Successfully' })
   }
+  res.json({ status: 503, message: 'Unauthorized' })
 })
 router.put('/profile', validateToken, async (req, res) => {
-  const {
-    index,
-    value,
-    number,
-    name,
-    email,
-    homepage_heading,
-    homepage_description,
-    aboutpage_description,
-    about,
-    skills,
-    projectspage_description,
-    footer_description,
-    links,
-    developer
-  } = req.body
+  const { index, value, number } = req.body
   let profileupdate
   console.log(index)
   switch (index) {
@@ -165,61 +171,34 @@ router.put('/profile', validateToken, async (req, res) => {
     message: 'Home Page Updated!!',
     profileupdate: profileupdate
   })
-  // const profileRecord=await profile.create({
-  //     name:name,
-  //     email:email,
-  //     homepage_heading:homepage_heading,
-  //     homepage_description:homepage_description,
-  //     aboutpage_description:aboutpage_description,
-  //     about:about,
-  //     skills:skills,
-  //     projectspage_description:projectspage_description,
-  //     footer_description:footer_description,
-  //     links:links,
-  //     developer:developer
-  // })
-  // if(profileRecord){
-  // }
 })
 router.put('/project/:id', validateToken, async (req, res) => {
   let { index, value, number, id } = req.body
   let projectupdate
-  switch (index) {
-    case 0:
-      projectupdate = await project.findByIdAndUpdate(id, {
-        project_name: value
-      })
-      break
-    case 1:
-      projectupdate = await project.findByIdAndUpdate(id, {
-        project_description: value
-      })
-      break
+  if(objectIdRegex.test(req.params.id)){
+    switch (index) {
+      case 0:
+        projectupdate = await project.findByIdAndUpdate(id, {
+          project_name: value
+        })
+        break
+      case 1:
+        projectupdate = await project.findByIdAndUpdate(id, {
+          project_description: value
+        })
+        break
+      case 2:
+        projectupdate = await project.findByIdAndUpdate(id, {
+          visiblity: value
+        })
+        break
+    }
+    return res.json({
+      status: 200,
+      message: 'Project Updated!!',
+      projectupdate: projectupdate
+    })
   }
-  res.json({
-    status: 200,
-    message: 'Project Updated!!',
-    projectupdate: projectupdate
-  })
+  res.redirect("/")
 })
-// router.post("/projects",async (req,res)=>{
-//     const {project_name,project_type,project_description,projectspage_heading,projectspage_description,projectspage_overview,projectspage_features,techstack,projectsource_link,project_link,developers}=req.body;
-//     // console.log(name,email,message);
-//     const projectRecord=await project.create({
-//         project_name:project_name,
-//         project_type:project_type,
-//         project_description:project_description,
-//         projectspage_heading:projectspage_heading,
-//         projectspage_description:projectspage_description,
-//         projectspage_overview:projectspage_overview,
-//         projectspage_features:projectspage_features,
-//         techstack:techstack,
-//         projectsource_link:projectsource_link,
-//         project_link:project_link,
-//         developers:developers
-//     })
-//     if(projectRecord){
-//         res.json({status:200,message:"Response Recoded!!,",project:JSON.stringify(projectRecord)});
-//     }
-// });
 module.exports = router

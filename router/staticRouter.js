@@ -38,11 +38,25 @@ router.get('/admin',async (req,res)=>{
         }
         const profiledata=await profile.findOne();
         res.render('admin', {profiledata:profiledata});
-})
+});
 router.get('/admin/dashboard',validateToken,async (req,res)=>{
     res.status(200);
     const profiledata=await profile.findOne();
     const projectsdetails=await project.find();
     res.render('dashboard', {profiledata:profiledata,projectsdetails:projectsdetails});
+});
+router.get('/admin/dashboard/projectdetails/:id',validateToken,async (req,res)=>{
+    if(objectIdRegex.test(req.params.id)){
+        res.status(200);
+        const profiledata=await profile.findOne();
+        const projectsdetails=await project.findById(req.params.id);
+        if(projectsdetails){
+            res.render('projectdetails', {profiledata:profiledata,projectsdetails:projectsdetails});
+        }else{
+            res.redirect("/");
+        }
+    }else{
+        res.redirect("/");
+    }
 });
 module.exports=router;
