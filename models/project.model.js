@@ -37,6 +37,9 @@ const projectSchema=new Schema({
     },
     project_image:{
         type:String
+    },
+    visiblity:{
+        type:String
     }
 });
 const project=mongoose.model('Project',projectSchema);

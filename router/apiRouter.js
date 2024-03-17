@@ -9,7 +9,13 @@ const jwt = require('jsonwebtoken')
 const validateToken = require('../middleware/authenticateAdmin')
 const project = require('../models/project.model')
 const profile = require('../models/profile.model')
+const multer = require('multer');
+const updateProfie = require('../controller/uploadprofile')
+const updateProjectpic = require('../controller/uploadprojectpiv')
+
 router.post('/contact', contactForm)
+router.post('/upload-profilepic',validateToken,updateProfie);
+router.post('/upload-projectpic/:id',validateToken,updateProjectpic);
 
 router.get('/resume/:id', (req, res) => {
   const filePath = path.join(__dirname, '../securefiles', 'resume.pdf') // Path to your secure PDF file
@@ -154,7 +160,11 @@ router.put('/profile', validateToken, async (req, res) => {
       })
       break
   }
-  res.json({ status: 200, message: 'Updated!!', profileupdate: profileupdate })
+  res.json({
+    status: 200,
+    message: 'Home Page Updated!!',
+    profileupdate: profileupdate
+  })
   // const profileRecord=await profile.create({
   //     name:name,
   //     email:email,
@@ -170,6 +180,27 @@ router.put('/profile', validateToken, async (req, res) => {
   // })
   // if(profileRecord){
   // }
+})
+router.put('/project/:id', validateToken, async (req, res) => {
+  let { index, value, number, id } = req.body
+  let projectupdate
+  switch (index) {
+    case 0:
+      projectupdate = await project.findByIdAndUpdate(id, {
+        project_name: value
+      })
+      break
+    case 1:
+      projectupdate = await project.findByIdAndUpdate(id, {
+        project_description: value
+      })
+      break
+  }
+  res.json({
+    status: 200,
+    message: 'Project Updated!!',
+    projectupdate: projectupdate
+  })
 })
 // router.post("/projects",async (req,res)=>{
 //     const {project_name,project_type,project_description,projectspage_heading,projectspage_description,projectspage_overview,projectspage_features,techstack,projectsource_link,project_link,developers}=req.body;

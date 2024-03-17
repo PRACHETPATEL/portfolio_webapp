@@ -9,6 +9,13 @@ router.get('/',async (req,res)=>{
     const projectsdetails=await project.find();
     res.render('index', {profiledata:profiledata,projectsdetails:projectsdetails});
 })
+router.get('/logout',async (req,res)=>{
+    if(req.cookies.logged_in){
+        res.clearCookie('logged_in');
+        res.clearCookie('token');
+    }
+    res.redirect('/');
+})
 router.get('/projectdetails/:id',async (req,res)=>{
     if(objectIdRegex.test(req.params.id)){
         res.status(200);
@@ -25,6 +32,10 @@ router.get('/projectdetails/:id',async (req,res)=>{
 })
 router.get('/admin',async (req,res)=>{
         res.status(200);
+        const check = req.cookies.logged_in
+        if (check) {
+            return res.redirect("/admin/dashboard");
+        }
         const profiledata=await profile.findOne();
         res.render('admin', {profiledata:profiledata});
 })
