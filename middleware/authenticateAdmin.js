@@ -20,7 +20,6 @@ const validateToken=asyncHandler(async (req,res,next)=>{
         }
         return;
     }
-    res.status(404);
-    throw new Error("User is not authorized")
+    res.redirect('/')
 });
 module.exports=validateToken;

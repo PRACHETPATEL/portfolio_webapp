@@ -1,8 +1,6 @@
-const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const asyncHandler = require('express-async-handler')
-const app = express();
 
 const storage = multer.diskStorage({
     destination:path.join(__dirname , "../public/assets/"),
@@ -29,7 +27,7 @@ const upload = multer({
     limits: limits 
 });
 
-let updateProfie=asyncHandler( (req, res) => {
+let updateProfiePic=asyncHandler( (req, res) => {
     console.log();
     upload.single('profilepic')(req, res, function (err) {
         if (err instanceof multer.MulterError) {
@@ -43,5 +41,5 @@ let updateProfie=asyncHandler( (req, res) => {
         res.status(200).json({ status: 200, message: 'File uploaded successfully.' });
     });
 });
-module.exports=updateProfie;
+module.exports=updateProfiePic;
 

@@ -82,16 +82,43 @@
             </div>
                     
         </div>
-        <section id="home" class="section1 text-center d-flex align-items-center justify-content-center"
+        <section id="home" class="section1 d-flex justify-content-center pb-5"
             style="min-height: 100vh;background: url('../../../assets/background.webp');">
-            <div class="col-lg-8 px-md-5 px-lg-5 px-3">
-                
+            <div class="col-lg-10 col-md-12 col-12 px-md-5 px-lg-5 px-3" style="margin-top: 10vh;">
+                <div class="d-flex align-items-center col-12 gap-2 px-md-5 bg-tertiary px-lg-5 px-3 my-2" style="background-color: white;min-height:10vh;box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);">
+                    <div class="col-3">Name</div>
+                    <div class="col-4">Email</div>
+                    <div class="col-5">Message</div>
+                </div>
+                <h3 class=" px-lg-5 px-3 text-center text-black">Unreplied Mails</h3>
+                <% mails.forEach(function (mail){%>
+                    <% if(!mail.replied){ %>
+                        <div class="d-flex align-items-center gap-2 col-12 px-md-5 bg-tertiary px-lg-5 px-3" style="background-color: white;min-height:10vh;z-index: 999;">
+                            <div class="col-3" style="overflow: auto;"><%= mail.name %></div>
+                            <div class="col-4" style="overflow: auto;"><%= mail.email %></div>
+                            <div class="col-5" style="overflow: auto;"><%= mail.message%></div>
+                        </div>
+                    <%}%>
+                <%})%>
+            </div>
                 
         </section>
        
     <section id="contact"  class="d-flex flex-column align-items-center"
     style="min-height: 100vh;background: url('../../../assets/background.webp');
     ">
+    <div class="col-lg-10 col-md-12 col-12 px-md-5 px-lg-5 px-3" >
+     <h3 class=" px-lg-5 px-3 text-center text-black">Replied Mails</h3>
+     <% mails.forEach(function (mail){%>
+         <% if(mail.replied){ %>
+             <div class="d-flex align-items-center gap-2 col-12 px-md-5 bg-primary px-lg-5 px-3" style="background-color: white;min-height:10vh;z-index: 999;">
+                 <div class="col-3" style="overflow: auto;"><%= mail.name %></div>
+                 <div class="col-4" style="overflow: auto;"><%= mail.email %></div>
+                 <div class="col-5" style="overflow: auto;"><%= mail.message%></div>
+             </div>
+         <%}%>
+     <%})%>
+    </div>
     <div class="col-lg-8 px-md-5 px-lg-5 px-3" style="margin-top: 10vh;">
         <h1 class="my-3 text-center text-black" style="text-transform: uppercase;font-weight: 700;">SEND EMAIL</h1>
         <div class="d-flex justify-content-around">
@@ -101,12 +128,14 @@
     <div class="col-lg-6 col-sm-11 col-11 px-md-5 bg-primary px-lg-5 px-3 my-5" style="margin-top: 10vh; background-color: white;min-height:80vh;box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);border-radius: 10px;z-index: 999;">
         <form id="contactform" class="d-block"  method="post">
             <div class="d-flex flex-column my-5">
-            <label class="" for="name">Name</label>
-            <input  required="" placeholder="Enter Your Name" type="text" class="p-3 bg-tertiary text-white" style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);" name="name" id="name">
-            </div>
-            <div class="d-flex flex-column my-5">
             <label class="" for="email">Email</label>
-            <input required="" placeholder="Enter Your Email" type="email" class="p-3 bg-tertiary text-white" style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);" name="email" id="email">
+            <select required="" class="p-3 bg-tertiary text-white" style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);"id="email">
+                <% mails.forEach(function (mail){%>
+                    <% if(!mail.replyed){ %>
+                        <option value="<%=mail.email%>"><%=mail.email%></option>
+                    <%}%>
+                <%})%>
+            </select>
             </div>
             <div class="d-flex flex-column mt-5">
             <label class="" for="message">Message</label>
@@ -114,7 +143,7 @@
             </div>
             <div class="customtooltip alert alert-success text-center mt-2" id="tooltip"></div>
             <div class="text-center"><button type="submit" class="btn btn-lg text-tertiary bg-secondary px-4 my-4 py-2"
-                style="font-weight: 700;box-shadow: 0 4px 8px rgba(255, 211, 149, 0.4);">Submit</button></div>
+                style="font-weight: 700;box-shadow: 0 4px 8px rgba(255, 211, 149, 0.4);">SEND</button></div>
         </form>
         <div id="loader2" class="w-100 d-none justify-content-between align-items-center" style="height: 80vh;">
             <div class="loader"></div>
