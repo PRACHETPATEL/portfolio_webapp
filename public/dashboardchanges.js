@@ -32,11 +32,13 @@ window.addEventListener('load',()=>{
         const file = input.files[0]; 
         // console.log(file);
         const formData = new FormData(); 
-        formData.append('profilepic', file);
+        formData.append('resume', file);
+        // console.log(formData);
         const response=await axios.post(api+'/api/upload-resume', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }});
+        // console.log(response);
         hideLoader();
         location.reload();
     }

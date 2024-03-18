@@ -1,9 +1,0 @@
-/public/assets
-/public/styles
-/public/style.css
-/node_modules
-.env
-/securefiles
-/models
-.gitignore
-/backup
