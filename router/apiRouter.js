@@ -218,7 +218,7 @@ router.put('/project/:id', validateToken, async (req, res) => {
         projectdata = await project.findById(id)
         const featuresarray = projectdata.projectspage_features
         featuresarray[number] = value
-        projectupdate = await project.updateOne({
+        projectupdate = await project.findByIdAndUpdate(id,{
           projectspage_features: featuresarray
         })
         break
@@ -226,7 +226,7 @@ router.put('/project/:id', validateToken, async (req, res) => {
         projectdata = await project.findById(id)
         const featuresarrayx = projectdata.projectspage_features
         featuresarrayx.splice(number, 1)
-        projectupdate = await project.updateOne({
+        projectupdate = await project.findByIdAndUpdate(id,{
           projectspage_features: featuresarrayx
         })
         break
@@ -234,7 +234,7 @@ router.put('/project/:id', validateToken, async (req, res) => {
         projectdata = await project.findById(id)
         const featuresarrayy = projectdata.projectspage_features
         featuresarrayy[featuresarrayy.length] = ''
-        projectupdate = await project.updateOne({
+        projectupdate = await project.findByIdAndUpdate(id,{
           projectspage_features: featuresarrayy
         })
         break
@@ -242,7 +242,7 @@ router.put('/project/:id', validateToken, async (req, res) => {
         projectdata = await project.findById(id)
         const techstack = projectdata.techstack
         techstack.splice(number, 1)
-        projectupdate = await project.updateOne({
+        projectupdate = await project.findByIdAndUpdate(id,{
           techstack: techstack
         })
         break
@@ -250,7 +250,7 @@ router.put('/project/:id', validateToken, async (req, res) => {
         projectdata = await project.findById(id)
         const techstackx = projectdata.techstack
         techstackx[techstackx.length]=value
-        projectupdate = await project.updateOne({
+        projectupdate = await project.findByIdAndUpdate(id,{
           techstack: techstackx
         })
         break

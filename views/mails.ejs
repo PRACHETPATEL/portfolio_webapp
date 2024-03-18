@@ -11,11 +11,11 @@
     <meta property="og:title" content="Prachet Patel | Full Stack Developer">
     <meta property="og:description"
         content="Portfolio website of Prachet Patel, showcasing skills in full-stack development with expertise in HTML5, JavaScript, CSS, Bootstrap, Java, JSP, Servlets, Angular.js, Node.js, Express.js, MongoDB, and deployment on Microsoft Azure VM.">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="icon" href="../assets/logo.webp" type="image/icon png">
+    <link rel="icon" href="../../assets/logo.webp" type="image/icon png">
     <title>
         <%= profiledata.name %>
     </title>
@@ -25,7 +25,7 @@
     <div id="content" class="d-none">
         <header class="customnavbar d-flex bg-tertiary justify-content-between align-items-center" id="customnavbar">
             <div class="px-lg-5 px-md-5 px-3 d-flex align-items-center gap-3">
-                <img src="../assets/profile.webp" alt="profile" height="50px" width="50px"
+                <img src="../../assets/profile.webp" alt="profile" height="50px" width="50px"
                     style="border-radius: 50%;background-color: #FFD395;">
                 <a class="text-black logo" href="/" style="font-size: 1rem;font-weight: 700;">
                     <%= profiledata.name %>
@@ -42,13 +42,13 @@
                 </label>
             </div>
             <div class="px-lg-5 px-md-5 px-3  d-lg-flex d-md-flex align-items-center gap-5 d-none">
-                <a class="text-black " href="/" style="font-size: 0.9rem;font-weight: 700;">HOME</a>
-                <a class="text-black " href="#overview" style="font-size: 0.9rem;font-weight: 700;">OVERVIEW</a>
-                <a class="text-black " href="#techstack" style="font-size: 0.9rem;font-weight: 700;">TECHSTACK</a>
-                <a class="text-black " href="#links" style="font-size: 0.9rem;font-weight: 700;">LINKS</a>
+                <a class="text-black " href="/admin/dashboard" style="font-size: 0.9rem;font-weight: 700;">HOMEPAGE</a>
+                <a class="text-black " href="/admin/dashboard/mails" style="font-size: 0.9rem;font-weight: 700;">MAILS</a>
+                <!-- <a class="text-black " href="#PROJECTS" style="font-size: 0.9rem;font-weight: 700;">PROJECTS</a>
+                <a class="text-black " href="#LINKS" style="font-size: 0.9rem;font-weight: 700;">LINKS</a> -->
+                <a class="text-black " href="/logout" style="font-size: 0.9rem;font-weight: 700;">LOGOUT <i class="fa-solid fa-right-from-bracket"></i></a>
 
             </div>
-
             <div class="px-lg-5 px-md-5 px-3 d-lg-none d-md-none d-sm-block align-items-center"
                 style="font-size: 1.5rem;font-weight: 700;">
 
@@ -61,89 +61,66 @@
         <div class="smallnav bg-tertiary flex-column d-none" id="smallnav">
             <hr class="bg-primary m-0">
             <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" onclick="closeNav()"><a
-                    class="text-end text-black" href="/"
-                    style="font-size: 0.9rem;font-weight: 700;width: 100%;">HOME</a></div>
+                    class="text-end text-black" href="/admin/dashboard"
+                    style="font-size: 0.9rem;font-weight: 700;width: 100%;">HOMEPAGE</a></div>
             <hr class="bg-primary m-0">
             <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" onclick="closeNav()"><a
-                    class="text-end text-black" href="#overview"
-                    style="font-size: 0.9rem;font-weight: 700;width: 100%;">OVERVIEW</a></div>
+                    class="text-end text-black"  href="/admin/dashboard/mails" 
+                    style="font-size: 0.9rem;font-weight: 700;width: 100%;">MAILS</a></div>
+            <hr class="bg-primary m-0">
+            <!-- <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" onclick="closeNav()"><a
+                    class="text-end text-black" href="#PROJECTS"
+                    style="font-size: 0.9rem;font-weight: 700;width: 100%;">PROJECTS</a></div>
             <hr class="bg-primary m-0">
             <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" onclick="closeNav()"><a
-                    class="text-end text-black" href="#techstack"
-                    style="font-size: 0.9rem;font-weight: 700;width: 100%;">TECHSTACK</a></div>
+                    class="text-end text-black" href="#LINKS"
+                    style="font-size: 0.9rem;font-weight: 700;width: 100%;">LINKS</a>
+            </div> -->
             <hr class="bg-primary m-0">
-            <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" onclick="closeNav()"><a
-                    class="text-end text-black" href="#links"
-                    style="font-size: 0.9rem;font-weight: 700;width: 100%;">LINKS</a></div>
-
+            <div class="py-3 w-100 px-lg-5 px-md-5 px-3 d-flex justify-content-end" onclick="closeNav()">
+                <a class="text-end text-black" href="/logout" style="font-size: 0.9rem;font-weight: 700;width: 100%;">LOGOUT <i class="fa-solid fa-right-from-bracket"></i></a>
+            </div>
+                    
         </div>
         <section id="home" class="section1 text-center d-flex align-items-center justify-content-center"
-            style="min-height: 100vh;">
+            style="min-height: 100vh;background: url('../../../assets/background.webp');">
             <div class="col-lg-8 px-md-5 px-lg-5 px-3">
-                <h1 class="my-5 text-black" style="text-transform: uppercase;font-weight: 700;">
-                    <%=projectsdetails.project_name%>
-                </h1>
-                <div class="my-5" style="font-size: 1.25rem;">
-                    <%=projectsdetails.projectspage_description%>
-                </div>
-                <div class="text-center"><a href="<%=projectsdetails.projectsource_link%>" target="_blank"
-                        class="btn text-tertiary btn-lg bg-secondary px-5 py-3"
-                        style="font-weight: 700;box-shadow: 0 4px 8px rgba(255, 211, 149, 0.4);">PROJECT CODE</a>
-                </div>
+                
+                
         </section>
-        <section class="section2 bg-tertiary d-flex flex-column align-items-center" id="overview"
-            style="min-height: 100vh;">
-            <div class="col-lg-8 px-md-5 px-lg-5 px-3" style="margin-top: 10vh;">
-                <h1 class="my-3 text-center text-black" style="text-transform: uppercase;font-weight: 700;">PROJECT
-                    OVERVIEW</h1>
-                <div class="d-flex justify-content-around">
-                    <div style="border: 6px solid #FFD395;width: 50px;border-radius: 10px;"></div>
-                </div>
-                <div class="my-3 text-center" style="font-size: 1.25rem;">
-                    <%=projectsdetails.projectspage_overview%>
-                </div>
-            </div>
-            <div class="container col-12 px-md-5 px-lg-5 px-3 mt-5">
-                <img src="../assets/<%=projectsdetails.project_image%>" alt="" class="w-100">
-            </div>
-            <div
-                class="container d-flex flex-lg-row flex-sm-column flex-column  w-100 my-5 px-lg-5 px-md-5 px-3 justify-content-between">
-                <div class="col-lg-5">
-                    <h4 style="font-weight: 700;" class="my-5 text-black">FEATURES</h4>
-                    <div style="text-align: justify;">
-                        <% projectsdetails.projectspage_features.forEach(function(feature){ %>
-                            <div>
-                                <%=feature%>
-                            </div><br>
-                            <% }); %>
-                    </div>
-                </div>
-                <div class="col-lg-5" id="techstack">
-                    <h4 style="font-weight: 700; " class="my-5 text-black">TECHSTACK</h4>
-                    <div class="d-flex flex-wrap w-100 gap-3">
-                        <% projectsdetails.techstack.forEach(function(skill){ %>
-                            <div style="border-radius: 5px;font-weight: 600;" class="py-2 bg-primary px-3">
-                                <%=skill%>
-                            </div>
-                            <% }); %>
-                    </div>
-
-                    <h4 style="font-weight: 700; " class="mt-5 text-black">SEE LIVE</h4>
-                    <div class="d-flex flex-wrap w-100 gap-3" id="links">
-                        <div class="my-3"><a href="<%=projectsdetails.project_link%>" target="_blank"
-                                class="btn text-tertiary btn-lg bg-secondary px-4 py-2"
-                                style="font-weight: 700;box-shadow: 0 4px 8px rgba(255, 211, 149, 0.4);">PROJECT
-                                LINK</a></div>
-                        <div class="my-3"><a href="/" class="btn btn-outline-secondary text-black btn-lg px-4 py-2"
-                                style="font-weight: 700;box-shadow: 0 4px 8px rgba(255, 211, 149, 0.4);">GO BACK</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+       
+    <section id="contact"  class="d-flex flex-column align-items-center"
+    style="min-height: 100vh;background: url('../../../assets/background.webp');
+    ">
+    <div class="col-lg-8 px-md-5 px-lg-5 px-3" style="margin-top: 10vh;">
+        <h1 class="my-3 text-center text-black" style="text-transform: uppercase;font-weight: 700;">SEND EMAIL</h1>
+        <div class="d-flex justify-content-around">
+            <div style="border: 6px solid #FFD395;width: 50px;border-radius: 10px;"></div>
+        </div>
     </div>
-    </section>
-
+    <div class="col-lg-6 col-sm-11 col-11 px-md-5 bg-primary px-lg-5 px-3 my-5" style="margin-top: 10vh; background-color: white;min-height:80vh;box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);border-radius: 10px;z-index: 999;">
+        <form id="contactform" class="d-block"  method="post">
+            <div class="d-flex flex-column my-5">
+            <label class="" for="name">Name</label>
+            <input  required="" placeholder="Enter Your Name" type="text" class="p-3 bg-tertiary text-white" style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);" name="name" id="name">
+            </div>
+            <div class="d-flex flex-column my-5">
+            <label class="" for="email">Email</label>
+            <input required="" placeholder="Enter Your Email" type="email" class="p-3 bg-tertiary text-white" style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);" name="email" id="email">
+            </div>
+            <div class="d-flex flex-column mt-5">
+            <label class="" for="message">Message</label>
+            <textarea required="" cols="30" rows="10" class="p-3 bg-tertiary text-white" style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);" placeholder="Enter Your Message" name="message" id="message"></textarea>
+            </div>
+            <div class="customtooltip alert alert-success text-center mt-2" id="tooltip"></div>
+            <div class="text-center"><button type="submit" class="btn btn-lg text-tertiary bg-secondary px-4 my-4 py-2"
+                style="font-weight: 700;box-shadow: 0 4px 8px rgba(255, 211, 149, 0.4);">Submit</button></div>
+        </form>
+        <div id="loader2" class="w-100 d-none justify-content-between align-items-center" style="height: 80vh;">
+            <div class="loader"></div>
+        </div>
+    </div>
+</section>
     <footer class="bg-primary" style="min-height: 40vh;">
         <div class="container">
             <div class="d-flex flex-lg-row flex-sm-column flex-column flex-sm-column-reverse flex-column-reverse py-5"
@@ -182,7 +159,7 @@
     <div id="loader" class="d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="loader"></div>
     </div>
-    <script src="../projectsscript.js"></script>
+    <script src="../../dashboardmails.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"
         integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
