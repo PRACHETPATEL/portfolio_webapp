@@ -35,7 +35,11 @@
                     <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path>
                 </svg>    -->
                 <label class="ui-switch text-black" onchange="changeMode()">
-                    <input type="checkbox">
+                    <% if(mode){ %>
+                        <input type="checkbox" checked>
+                    <%}else{%>
+                        <input type="checkbox">
+                    <%}%>
                     <div class="slider">
                         <div class="circle"></div>
                     </div>
@@ -85,13 +89,15 @@
         <section id="home" class="section1 d-flex justify-content-center pb-5"
             style="min-height: 100vh;background: url('../../../assets/background.webp');">
             <div class="col-lg-10 col-md-12 col-12 px-md-5 px-lg-5 px-3" style="margin-top: 10vh;">
+                <h3 class=" px-lg-5 px-3 text-center text-black my-3">Unreplied Mails</h3>
                 <div class="d-flex align-items-center col-12 gap-2 px-md-5 bg-tertiary px-lg-5 px-3 my-2" style="background-color: white;min-height:10vh;box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);">
                     <div class="col-3">Name</div>
                     <div class="col-4">Email</div>
                     <div class="col-5">Message</div>
                 </div>
-                <h3 class=" px-lg-5 px-3 text-center text-black">Unreplied Mails</h3>
-                <% mails.forEach(function (mail){%>
+               
+                <% for (let i = mails.length - 1; i >= 0; i--) {%>
+                    <% let mail = mails[i];%>
                     <% if(!mail.replied){ %>
                         <div class="d-flex align-items-center gap-2 col-12 px-md-5 bg-tertiary px-lg-5 px-3" style="background-color: white;min-height:10vh;z-index: 999;">
                             <div class="col-3" style="overflow: auto;"><%= mail.name %></div>
@@ -99,7 +105,7 @@
                             <div class="col-5" style="overflow: auto;"><%= mail.message%></div>
                         </div>
                     <%}%>
-                <%})%>
+                <%}%>
             </div>
                 
         </section>
@@ -108,7 +114,7 @@
     style="min-height: 100vh;background: url('../../../assets/background.webp');
     ">
     <div class="col-lg-10 col-md-12 col-12 px-md-5 px-lg-5 px-3" >
-     <h3 class=" px-lg-5 px-3 text-center text-black">Replied Mails</h3>
+     <h3 class=" px-lg-5 px-3 text-center text-black my-3">Replied Mails</h3>
      <% mails.forEach(function (mail){%>
          <% if(mail.replied){ %>
              <div class="d-flex align-items-center gap-2 col-12 px-md-5 bg-primary px-lg-5 px-3" style="background-color: white;min-height:10vh;z-index: 999;">
@@ -129,10 +135,11 @@
         <form id="contactform" class="d-block"  method="post">
             <div class="d-flex flex-column my-5">
             <label class="" for="email">Email</label>
+                
             <select required="" class="p-3 bg-tertiary text-white" style="border-radius: 5px;border: 2px solid rgba(0, 0, 0, 0.1);"id="email">
                 <% mails.forEach(function (mail){%>
-                    <% if(!mail.replyed){ %>
-                        <option value="<%=mail.email%>"><%=mail.email%></option>
+                    <% if(!mail.replied){ %>
+                        <option value="<%=mail._id%>"><%=mail.email%></option>
                     <%}%>
                 <%})%>
             </select>

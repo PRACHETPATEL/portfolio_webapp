@@ -33,7 +33,7 @@ let updateProfiePic=asyncHandler( (req, res) => {
         if (err instanceof multer.MulterError) {
             return res.status(400).json({ status: 400, message: 'File upload error: ' + err.message });
         } else if (err) {
-            return res.status(500).json({ status: 500, message: 'Internal server error' });
+            return res.status(500).json({ status: 500, message:err.message });
         }
         if (!req.file) {
             return res.status(400).json({ status: 400, message: 'No file uploaded.' });

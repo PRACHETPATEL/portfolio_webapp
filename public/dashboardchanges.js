@@ -20,10 +20,15 @@ window.addEventListener('load',()=>{
         // console.log(file);
         const formData = new FormData(); 
         formData.append('profilepic', file);
-        const response=await axios.post(api+'/api/upload-profilepic', formData, {
+        await axios.post(api+'/api/upload-profilepic', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
-            }});
+            }}).then(()=>{
+                alert("Profile Updated Successfully!!")
+            }).catch((err)=>{
+                alert(err.response.data.message)
+                return;
+            })
         hideLoader();
         location.reload();
     }
@@ -34,11 +39,16 @@ window.addEventListener('load',()=>{
         const formData = new FormData(); 
         formData.append('resume', file);
         // console.log(formData);
-        const response=await axios.post(api+'/api/upload-resume', formData, {
+        await axios.post(api+'/api/upload-resume', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
-            }});
-        // console.log(response);
+            }}).then(()=>{
+                alert("Resume Uploaded Successfully!!") 
+            }).catch((err)=>{
+                console.log(err);
+                alert(err.response.data.message)
+                return;
+            })
         hideLoader();
         location.reload();
     }
@@ -47,10 +57,15 @@ window.addEventListener('load',()=>{
         const file = input.files[0]; 
         const formData = new FormData(); 
         formData.append('projectpic', file);
-        const response=await axios.post(api+'/api/upload-projectpic/'+id, formData, {
+        await axios.post(api+'/api/upload-projectpic/'+id, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
-            }});
+            }}).then(()=>{
+                alert("Project Image Updated Successfully!!")
+            }).catch((err)=>{
+                alert(err.response.data.message)
+                return;
+            });
         hideLoader();
         location.reload();
     }

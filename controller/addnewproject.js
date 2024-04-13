@@ -3,7 +3,6 @@ const multer = require('multer');
 const path = require('path');
 const asyncHandler = require('express-async-handler');
 const project = require('../models/project.model');
-const app = express();
 let filenamex;
 const storage = multer.diskStorage({
     destination:path.join(__dirname , "../public/assets/"),

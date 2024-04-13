@@ -4,10 +4,10 @@ const mailsender = require('../config/email-config');
 
 const sendMail=asyncHandler(async (req,res)=>{
     const {email,message}=req.body;
-    const contactrecord=await contact.findOne({email:email});
+    const contactrecord=await contact.findById(email);
     const emailData = {
         from:process.env.GMAIL_USERNAME,
-        to:email,
+        to:contactrecord.email,
         subject: "Visited Prachet's Portfolio",
         html:`
             <h5>Hello ${contactrecord.name},</h5>

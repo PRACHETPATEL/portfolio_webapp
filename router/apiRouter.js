@@ -30,4 +30,15 @@ router.put('/project/:id', validateToken, updateProjects)
 // router.get('/mails', validateToken, fetchMails);
 router.post('/sendmail', validateToken, sendMail);
 router.get('/updatemailstatus/:id', validateToken, updateMailStatus);
+router.get('/modestatus', (req,res)=>{
+    res.json({status:200,value:req.cookies.mode});
+});
+router.get('/updatemode/:id', (req,res)=>{
+    res.cookie(
+        'mode',
+        req.params.id ,
+        { maxAge: 86400000, httpOnly: true ,overwrite:true}
+      )
+    res.json({status:200,value:req.params.id});
+});
 module.exports = router

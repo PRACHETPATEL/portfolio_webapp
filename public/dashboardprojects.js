@@ -1,4 +1,4 @@
-window.addEventListener('load',(event)=>{
+window.addEventListener('load',async(event)=>{
     const api=location.protocol+"//"+ location.hostname+":"+location.port;
     const loader=document.getElementById('loader');
     const content=document.getElementById('content');
@@ -14,7 +14,23 @@ window.addEventListener('load',(event)=>{
     const name=document.getElementById('name');
     const email=document.getElementById('email');
     const message=document.getElementById('message');
-    let flag=true;
+    let moderes = await axios.get(api + '/api/modestatus')
+    let flag = !Boolean(Number(moderes.data.value))
+    if (flag) {
+      //nignt
+      root.style.setProperty('--bs-primary-rgb', '16,24,39')
+      root.style.setProperty('--bs-tertiary-rgb', '30,41,60')
+      root.style.setProperty('--bs-black-rgb', '255, 211, 149')
+      root.style.setProperty('--bs-white-rgb', '156, 163, 175')
+      home.style.background = 'RGBA(16,24,39)'
+    } else {
+      //day
+      root.style.setProperty('--bs-primary-rgb', '255,255,255')
+      root.style.setProperty('--bs-tertiary-rgb', '250, 250, 250')
+      root.style.setProperty('--bs-black-rgb', '0, 0, 0')
+      root.style.setProperty('--bs-white-rgb', '102, 102, 102')
+      home.style.background = "url('../../../assets/background.webp')"
+    }
     function showContent() {
         loader.classList.remove('d-flex');
         loader.classList.add('d-none');
@@ -58,21 +74,23 @@ window.addEventListener('load',(event)=>{
             smallnav.classList.add('d-none');
         },300);
     }
-    window.changeMode=()=>{
-        if(flag){
-            root.style.setProperty('--bs-primary-rgb', '16,24,39');
-            root.style.setProperty('--bs-tertiary-rgb', '30,41,60');
-            root.style.setProperty('--bs-black-rgb', '255, 211, 149');
-            root.style.setProperty('--bs-white-rgb', '156, 163, 175');
-            home.style.background="RGBA(16,24,39)"
-            flag=false;
-        }else{
-            root.style.setProperty('--bs-primary-rgb', '255,255,255');
-            root.style.setProperty('--bs-tertiary-rgb', '250, 250, 250');
-            root.style.setProperty('--bs-black-rgb', '0, 0, 0');
-            root.style.setProperty('--bs-white-rgb', '102, 102, 102');
-            home.style.background="url('../assets/background.webp')"
-            flag=true;
+    window.changeMode = async () => {
+        if (!flag) {
+          root.style.setProperty('--bs-primary-rgb', '16,24,39')
+          root.style.setProperty('--bs-tertiary-rgb', '30,41,60')
+          root.style.setProperty('--bs-black-rgb', '255, 211, 149')
+          root.style.setProperty('--bs-white-rgb', '156, 163, 175')
+          home.style.background = 'RGBA(16,24,39)'
+          await axios.get(api + '/api/updatemode/0')
+          flag = true
+        } else {
+          root.style.setProperty('--bs-primary-rgb', '255,255,255')
+          root.style.setProperty('--bs-tertiary-rgb', '250, 250, 250')
+          root.style.setProperty('--bs-black-rgb', '0, 0, 0')
+          root.style.setProperty('--bs-white-rgb', '102, 102, 102')
+          home.style.background = "url('../../../assets/background.webp')"
+          await axios.get(api + '/api/updatemode/1')
+          flag = false
         }
-    }
+      }
 })
